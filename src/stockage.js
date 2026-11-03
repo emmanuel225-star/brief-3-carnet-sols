@@ -9,4 +9,9 @@ const texteJSON = await readFile (chemin,"utf8");
 return JSON.parse(texteJSON);
 }
 
+// Écrit le tableau dans le fichier, au format JSON indenté de 2 espaces.
+export async function enregistrerJson(chemin, enregistrements) {
+  const contenu = JSON.stringify(enregistrements,null,2);
+  await writeFile(chemin,contenu,'utf8');
 
+}
