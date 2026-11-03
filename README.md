@@ -8,8 +8,6 @@ Le carnet de sols est utilisé par un technicien de terrain qui visite des parce
 
 Le carnet sépare deux choses. Un constat est ce qu’on observe ou mesure, sans l’interpréter (« le pH de P1 est de 5,2 le 12 mars »). Une hypothèse est une explication possible, à vérifier avec l’agronome (« le sol est peut-être trop acide à cause des engrais »). Le carnet n’enregistre que des constats et repère des valeurs à discuter : il ne pose aucun diagnostic.
 
-
-
 ## Prérequis et lancement
 
 - Node.js 20 ou plus récent, Git ; aucune bibliothèque à installer.
