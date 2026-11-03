@@ -9,24 +9,23 @@ export const HUMIDITES = ['sec', 'intermédiaire', 'humide'];
 // Renvoie une ligne de texte qui décrit l'observation.
 // Exemple : 'S01 | P1 | sableux | pH 5.2 | sec'
 export function formaterObservation(observation) {
-  return `${ observation.id} | ${ observation.parcelle} | ${ observation.texture} | pH ${observation.pH} | ${observation.etatHumidite}`;
+  return `${observation.id} | ${observation.parcelle} | ${observation.texture} | pH ${observation.pH} | ${observation.etatHumidite}`;
 }
 
 
 // Renvoie un texte avec une observation par ligne (lignes séparées par '\n'),
 // ou 'Aucune observation enregistrée.' si la liste est vide.
 export function listerObservations(observations) {
-if( observations.length === 0) {
-  return 'Aucune observation enregistrée.';
-}else {
+  if (observations.length === 0) {
+    return 'Aucune observation enregistrée.';
+  }
   return observations.map(formaterObservation).join('\n');
-}
 }
 
 
 // Renvoie l'observation qui a cet identifiant de point, ou undefined si elle n'existe pas.
-export function trouverParId(observation,id){
-  return observation.find(observations=>observation.id===id);
+export function trouverParId(observations, id) {
+  return observations.find(observation => observation.id === id);
 }
 
 // Contrôle une saisie AVANT de l'ajouter. Tous les champs arrivent sous forme de TEXTE :
@@ -37,16 +36,33 @@ export function trouverParId(observation,id){
 // · texture présente dans TEXTURES · pH nombre entre 0 et 14 (bornes comprises)
 // · etatHumidite présent dans HUMIDITES. N'ajoutez aucune autre règle que celles-ci.
 export function verifierObservation(saisie, observations) {
-  throw new Error('TODO : coder verifierObservation dans src/registre.js');
+  const erreurs = [];
+
+  if (saisie.id.trim() === '') {
+    erreurs.push('veuillez entrer un id');
+  } else if (observations.some(observation => observation.id === saisie.id)) {
+    erreurs.push('id existe déjà');
+  }
+
+  if (saisie.parcelle.trim() === '') {
+    erreurs.push('veuillez entrez obligatoirement une parcelle validé');
+  }
+
+  if (!TEXTURES.includes(saisie.texture)) {
+    erreurs.push('la texture est forcement sableux,argileux ou limoneux');
+  }
+
+  const pH = Number(saisie.pH.replace(',', '.'));
+  if (saisie.pH.trim() === '' || Number.isNaN(pH) || pH < 0 || pH > 14) {
+    erreurs.push('veuillez entrez un pH valide compris entre 0 et 14 ');
+  }
+
+  if (!HUMIDITES.includes(saisie.etatHumidite)) {
+    erreurs.push('veuillez entrer un état d humidité valide');
+  }
+
+  return erreurs;
 }
 
-// Fabrique l'observation à enregistrer à partir d'une saisie VALIDE : pH devient un nombre.
-export function creerObservation(saisie) {
-  throw new Error('TODO : coder creerObservation dans src/registre.js');
-}
 
-// Ajoute la saisie au carnet si elle est valide (verifierObservation, puis creerObservation).
-// Renvoie les erreurs : [] si l'observation a été ajoutée ; sinon les messages, et rien n'est ajouté.
-export function ajouterObservation(observations, saisie) {
-  throw new Error('TODO : coder ajouterObservation dans src/registre.js');
-}
+
