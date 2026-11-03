@@ -66,3 +66,11 @@ export function verifierObservation(saisie, observations) {
 
 
 
+// Fabrique l'observation à enregistrer à partir d'une saisie VALIDE : pH devient un nombre.
+export function creerObservation(saisie) {
+  return {
+    ...saisie,
+    pH: Number(saisie.pH.replace(',', '.')),
+  };
+}
+
