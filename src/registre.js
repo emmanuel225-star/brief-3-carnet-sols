@@ -53,7 +53,7 @@ export function verifierObservation(saisie, observations) {
   }
 
   const pH = Number(saisie.pH.replace(',', '.'));
-  if (saisie.pH.trim() === '' || Number.isNaN(pH) || pH < 0 || pH > 14) {
+  if (saisie.pH === '' || Number.isNaN(pH) || pH < 0 || pH > 14) {
     erreurs.push('veuillez entrez un pH valide compris entre 0 et 14 ');
   }
 
