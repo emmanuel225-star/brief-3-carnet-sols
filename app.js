@@ -31,7 +31,7 @@ console.log('');
 
 // Pour le Premier choix : poser les questions, vérifier, ajouter , enregister .
 
-async function ajouter(observation) {
+async function ajouter(observations) {
 console.log('Vous ajouter une observation');
 
  const id = await demander('Point observé (ex. S11) : ');
@@ -44,5 +44,30 @@ console.log('Vous ajouter une observation');
   if (pH === null) return;
   const etatHumidite = await demander(`État d'humidité (${HUMIDITES.join(', ')}) : `);
   if (etatHumidite === null) return;
-  
+
+// Ecriture d'une fonction qui permettra de normaliser le style d'écriture
+
+const saisie = {
+    id: id.toUpperCase(),
+    parcelle: parcelle.toUpperCase(),
+    texture: texture.toLowerCase(),
+    pH,
+    etatHumidite: etatHumidite.toLowerCase(),
+  };
+
+  const erreurs = ajouterObservation(observations, saisie);
+  if (erreurs.length > 0) {
+    console.log('Observation refusée :');
+    for (const erreur of erreurs) {
+      console.log(`  - ${erreur}`);
+    }
+    console.log(`Le carnet compte toujours ${observations.length} observation(s).`);
+    return;
+  }
+
+  await enregistrerJson(FICHIER_DONNEES, observations);
+  console.log(`Observation ${saisie.id} ajoutée. Le carnet compte ${observations.length} observation(s).`);
 }
+
+
+
