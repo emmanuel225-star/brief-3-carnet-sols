@@ -69,5 +69,13 @@ const saisie = {
   console.log(`Observation ${saisie.id} ajoutée. Le carnet compte ${observations.length} observation(s).`);
 }
 
+// Pour le deuxième choix que l'utilisateur fera 
+
+function lister(observations) {
+  console.log(`--- Liste des observations (${observations.length}) ---`);
+  console.log(listerObservations(observations));
+}  
+
+
 
 
