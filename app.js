@@ -1,6 +1,5 @@
 // Carnet d'observation des sols — point d'entrée : le menu.
-// À vous d'écrire tout le menu : accueil, chargement des données, menu affiché avant chaque choix,
-// actions, sortie et gestion des erreurs. Comportement et textes imposés : fiches/3-ajouter-lister.md.
+// Comportement et textes imposés : fiches/3-ajouter-lister.md (+ fiches 4 et 5 pour les choix 3, 4, 5).
 // Lancer : node app.js
 import { demander, fermerSaisie, ouvrirSaisie } from './src/saisie.js';
 import { chargerJson, enregistrerJson } from './src/stockage.js';
@@ -10,10 +9,13 @@ import { SEUIL_PH_A_DISCUTER, compterParTexture, phMinMax, pointsADiscuter } fro
 
 const FICHIER_DONNEES = 'donnees/observations.json';
 
-async function main() {
-  ouvrirSaisie();
-  console.log("À compléter : écrivez le menu dans app.js (fiches/3-ajouter-lister.md).");
-  fermerSaisie();
+
+//  ====== Pour Les différents affichages ====== 
+
+function afficherAccueil(){
+  console.log('===================');
+  console.log('Ferme Connectée');
+  console.log('===================');
 }
 
-main();
+
