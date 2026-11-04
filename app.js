@@ -29,4 +29,20 @@ console.log('');
   console.log('0. Quitter');
 }
 
+// Pour le Premier choix : poser les questions, vérifier, ajouter , enregister .
 
+async function ajouter(observation) {
+console.log('Vous ajouter une observation');
+
+ const id = await demander('Point observé (ex. S11) : ');
+  if (id === null) return;
+  const parcelle = await demander('Parcelle (ex. P1) : ');
+  if (parcelle === null) return;
+  const texture = await demander(`Texture (${TEXTURES.join(', ')}) : `);
+  if (texture === null) return;
+  const pH = await demander('pH (nombre de 0 à 14, sans unité, virgule acceptée) : ');
+  if (pH === null) return;
+  const etatHumidite = await demander(`État d'humidité (${HUMIDITES.join(', ')}) : `);
+  if (etatHumidite === null) return;
+  
+}
