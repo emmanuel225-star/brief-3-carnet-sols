@@ -14,7 +14,7 @@ const FICHIER_DONNEES = 'donnees/observations.json';
 
 function afficherAccueil(){
   console.log('===================');
-  console.log('Ferme Connectée');
+  console.log('Ferme Pedagogique');
   console.log('===================');
 }
 
