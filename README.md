@@ -25,22 +25,27 @@ Sous PowerShell, si `npm` est bloqué : `npm.cmd test`.
 
 ✏️ *Cochez seulement ce qui marche : `- [x]`.*
 
-- [ ] Données lues et enregistrées dans `donnees/observations.json`
-- [ ] Ajouter une observation, saisies invalides refusées sans arrêter le programme
-- [ ] Lister les observations, message si le carnet est vide
-- [ ] Rechercher par point ou par parcelle ; filtrer par texture
-- [ ] Trier par pH
-- [ ] Synthèse : pH minimum et maximum, nombre par texture, points à discuter (pH < 5,5)
-- [ ] Bonus : supprimer et modifier une observation (choix 6 et 7)
-- [ ] Bonus : tri par pH décroissant, texture la plus fréquente
+- [x] Données lues et enregistrées dans `donnees/observations.json`
+- [x] Ajouter une observation, saisies invalides refusées sans arrêter le programme
+- [x] Lister les observations, message si le carnet est vide
+- [x] Rechercher par point ou par parcelle ; filtrer par texture
+- [x] Trier par pH
+- [x] Synthèse : pH minimum et maximum, nombre par texture, points à discuter (pH < 5,5)
+- [x] Bonus : supprimer et modifier une observation (choix 6 et 7)
+- [x] Bonus : tri par pH décroissant, texture la plus fréquente
 
 ## Données
 
-✏️ *Le fichier, le nombre d'observations, les champs (voir [docs/dictionnaire-donnees.md](docs/dictionnaire-donnees.md)), le pH sans unité. Rappelez qu'elles sont fictives.*
+Les observations sont dans `donnees/observations.json` : dix observations de départ (`S01` à `S10`), réparties sur cinq parcelles (`P1` à `P5`). Chaque observation a cinq champs : `id`, `parcelle`, `texture`, `pH` et `etatHumidite` (voir [docs/dictionnaire-donnees.md](docs/dictionnaire-donnees.md)). Le pH est un nombre de 0 à 14, **sans unité**. Chaque ajout est enregistré dans ce fichier. **Les données sont fictives** : elles servent à l’exercice et ne décrivent aucune vraie parcelle.
 
 ## Limites
 
-✏️ *Au moins trois. Par exemple : le carnet repère des valeurs à discuter, mais ne produit aucun diagnostic de fertilisation.*
+- Le carnet repère des valeurs à discuter (pH strictement inférieur à 5,5), mais ne produit **aucun diagnostic** de fertilisation et ne donne aucun conseil.
+- Le seuil de 5,5 est un repère pédagogique, pas une norme agronomique. Les textures et les états d’humidité sont des classes d’exercice.
+- Il n’y a **pas de moyenne de pH** : l’échelle du pH est logarithmique, une moyenne simple serait trompeuse.
+- Une seule observation par point, sans date ni heure de relevé : on ne peut pas suivre l’évolution d’une parcelle dans le temps.
+- Le carnet n’a pas de suppression ni de modification d’une observation (bonus non réalisé) : une erreur de saisie déjà enregistrée se corrige à la main dans le fichier JSON.
+- Le fichier JSON est modifié directement : pas de sauvegarde automatique ni de gestion de plusieurs utilisateurs en même temps.
 
 ## Documents
 
@@ -48,4 +53,6 @@ Sous PowerShell, si `npm` est bloqué : `npm.cmd test`.
 
 ## Auteur
 
-✏️ *Prénom NOM, compte GitHub. Entraide : avec qui, sur quoi.*
+Touré Tioh lagnime Emmanuel , emmanuel225-Star 
+
+Entraide : Koné Padjoufougou Abdoulaye , Kamagaté Salia Abdallah , Serifou Cheick Oumar , Koné Fatoumata
