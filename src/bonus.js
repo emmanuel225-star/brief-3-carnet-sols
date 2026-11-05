@@ -59,12 +59,22 @@ return[];
 
 // Renvoie une COPIE triée par pH décroissant. Le tableau reçu ne doit pas changer d'ordre.
 export function trierParPhDecroissant(observations) {
-  throw new Error('TODO Bonus : coder trierParPhDecroissant dans src/bonus.js');
+  return [...observations].sort((a, b) => b.pH - a.pH);
 }
 
 // Renvoie { texture, nombre } pour la texture la plus fréquente, ou null si la liste est vide.
 // En cas d'égalité, la première texture rencontrée l'emporte.
 // Exemple : { texture: 'limoneux', nombre: 4 }
 export function textureLaPlusFrequente(observations) {
-  throw new Error('TODO Bonus : coder textureLaPlusFrequente dans src/bonus.js');
+  if (observations.length === 0) {
+    return null;
+  }
+  const compteur = compterParTexture(observations);
+  let meilleure = null;
+  for (const [texture, nombre] of Object.entries(compteur)) {
+    if (meilleure === null || nombre > meilleure.nombre) {
+      meilleure = { texture, nombre };
+    }
+  }
+  return meilleure;
 }
