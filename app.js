@@ -162,10 +162,46 @@ function synthese(observations) {
   console.log('Ces points ne sont pas un diagnostic de fertilisation : ils servent à préparer l\'échange avec le coach.');
 }
 
+async function main() {
+  ouvrirSaisie();
+  const observations = await chargerJson(FICHIER_DONNEES);
 
+  afficherAccueil();
 
+  let continuer = true;
+  while (continuer) {
+    afficherLeMenu();
+    const choix = await demander('Votre choix : ');
 
+    // null = fin de la saisie (Ctrl+D ou entrée fermée)
+    if (choix === null) break;
 
+    switch (choix) {
+      case '1':
+        await ajouter(observations);
+        break;
+      case '2':
+        lister(observations);
+        break;
+      case '3':
+        await rechercher(observations);
+        break;
+      case '4':
+        await trier(observations);
+        break;
+      case '5':
+        synthese(observations);
+        break;
+      case '0':
+        console.log('Au revoir !');
+        continuer = false;
+        break;
+      default:
+        console.log('Choix inconnu : veuillez entrer un nombre du menu.');
+    }
+  }
 
+  fermerSaisie();
+}
 
-
+main(); 
